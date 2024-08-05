@@ -17,21 +17,15 @@ function sameFrequency(num1, num2) {
 
   if (numstr1.length !== numstr2.length) return false;
 
-  const counter1 = {};
-  const counter2 = {};
+  const frequencyCounter = {};
 
   for (let i = 0; i < numstr1.length; i++) {
-    counter1[numstr1[i]] = (counter1[numstr1[i]] || 0) + 1;
+    frequencyCounter[numstr1[i]] = (frequencyCounter[numstr1[i]] || 0) + 1;
+    frequencyCounter[numstr2[i]] = (frequencyCounter[numstr2[i]] || 0) - 1;
   }
 
-  for (let i = 0; i < numstr2.length; i++) {
-    counter2[numstr2[i]] = (counter2[numstr2[i]] || 0) + 1;
-  }
-
-  // console.log(counter1);
-
-  for (let key in counter1) {
-    if (counter1[key] !== counter2[key]) return false;
+  for (let key in frequencyCounter) {
+    if (frequencyCounter[key] !== 0) return false;
   }
 
   return true;
