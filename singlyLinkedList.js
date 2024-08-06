@@ -46,9 +46,34 @@ class SinglyLinkedList{
         return current;
     }
     shift(){
+        if(!this.head) return undefined;
+
+        const temp = this.head;
+        this.head = temp.next
+        
+        this.length--;
+
+        if(this.length === 0){
+            this.tail = null;
+        }
+        
+        return temp;
         // code here
     }
     unshift(val){
+        const newNode = new Node(val);
+
+        if(!this.head) {
+            this.head = newNode;
+            this.tail = newNode;
+        }else{
+            newNode.next = this.head;
+            this.head = newNode;
+        }
+
+        this.length++;
+
+        return this;
        // code here
     }
     get(index){
